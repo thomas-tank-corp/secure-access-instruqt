@@ -13,6 +13,7 @@ tags:
 owner: hashicorp-field-ops
 developers:
 - tharris@hashicorp.com
+- danny.knights@hashicorp.com
 lab_config:
   overlay: false
   width: 33
@@ -20,4 +21,4 @@ lab_config:
   sidebar_enabled: true
   feedback_recap_enabled: true
   loadingMessages: true
-checksum: "5071068698987291424"
+checksum: "4317970682993032153"
