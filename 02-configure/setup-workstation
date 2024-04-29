@@ -5,12 +5,12 @@ source /etc/profile.d/instruqt-env.sh
 git clone https://github.com/dannyjknights/hcpb-secure-access-instruqt.git
 
 #Define variables for Terraform
-echo 'export TF_VAR_rdp_admin_username=SuperSecretBoundary' >> /etc/profile.d/instruqt-env.sh
+echo 'export TF_VAR_rdp_admin_username=Administrator' >> /etc/profile.d/instruqt-env.sh
 echo 'export TF_VAR_s3_bucket_name=hcpb' >> /etc/profile.d/instruqt-env.sh
 echo 'export TF_VAR_db_name=workshop_postgres' >> /etc/profile.d/instruqt-env.sh
 echo 'export TF_VAR_db_password=workshop_UhFs5372Gjsbsbvgw' >> /etc/profile.d/instruqt-env.sh
 echo 'export TF_VAR_db_username=workshop_user' >> /etc/profile.d/instruqt-env.sh
-echo 'export TF_VAR_rdp_admin_pass=784b@!=dsgRGJjldEs' >> /etc/profile.d/instruqt-env.sh
+echo 'export TF_VAR_rdp_admin_pass=LongPassword123!' >> /etc/profile.d/instruqt-env.sh
 echo "export TF_VAR_aws_access=$AWS_ACCESS_KEY_ID" >> /etc/profile.d/instruqt-env.sh
 echo "export TF_VAR_aws_secret=$AWS_SECRET_ACCESS_KEY" >> /etc/profile.d/instruqt-env.sh
 echo 'export AWS_ACCESS_KEY_ID="'$AWS_ACCESS_KEY_ID'"' >> /etc/profile.d/instruqt-env.sh
