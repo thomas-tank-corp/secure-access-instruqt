@@ -1,0 +1,17 @@
+version: "3"
+containers:
+- name: cloud-client
+  image: gcr.io/instruqt/cloud-client
+  shell: /bin/bash
+  ports:
+  - 80
+virtualmachines:
+- name: workstation
+  image: ubuntu-os-cloud/ubuntu-2204-lts
+  shell: bash
+  machine_type: e2-highcpu-2
+aws_accounts:
+- name: AWS-account
+  managed_policies:
+  - arn:aws:iam::aws:policy/AdministratorAccess
+

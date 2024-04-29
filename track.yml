@@ -1,0 +1,23 @@
+slug: hcpb-secure-access
+id: ejkkwnvyggh2
+title: HCP Boundary - Secure Access
+teaser: Build a secure access solution with Boundary.
+description: |-
+  Learn how ....
+
+  **This track demonstrates how to:**
+    - etc
+icon: https://cdn.instruqt.com/assets/templates/aws.png
+tags:
+- boundary
+owner: hashicorp-field-ops
+developers:
+- tharris@hashicorp.com
+lab_config:
+  overlay: false
+  width: 33
+  position: right
+  sidebar_enabled: true
+  feedback_recap_enabled: true
+  loadingMessages: true
+checksum: "5071068698987291424"

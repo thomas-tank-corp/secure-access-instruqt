@@ -1,0 +1,21 @@
+#!/bin/sh
+
+git clone https://github.com/thomas-tank-corp/hcp-deploy.git
+
+echo 'export TF_VAR_password_auth_method_login_name=admin' >> /etc/profile.d/instruqt-env.sh
+echo 'export TF_VAR_password_auth_method_password=SuperSecretBoundary' >> /etc/profile.d/instruqt-env.sh
+echo 'export TF_VAR_hvn_cidr_block=172.31.0.0/16' >> /etc/profile.d/instruqt-env.sh
+echo 'export TF_VAR_region=eu-west-2' >> /etc/profile.d/instruqt-env.sh
+
+source /etc/profile.d/instruqt-env.sh
+
+exit 0
+
+
+
+
+
+
+
+
+
