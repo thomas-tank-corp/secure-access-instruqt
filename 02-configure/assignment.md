@@ -29,5 +29,9 @@ Move in into the `hcpb-secure-access` directory and execute `terrraform init` th
 
 The deployment will take around 5 minutes. When you see Terraform return `Apply Complete!` in the terminal, hit the green next button in the bottom right hand corner.
 
+This deployment will do the following things:
+
+1. 
+
 
 
