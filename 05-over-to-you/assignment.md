@@ -6,7 +6,8 @@ title: It's over to you!
 teaser: Create additional targets and configure Boundary to securely connect to them
 notes:
 - type: text
-  contents: Deploy an additional EC2 instance and use Boundary to securely connect to the target
+  contents: Deploy an additional EC2 instance and use Boundary to securely connect
+    to the target
 tabs:
 - title: Workstation
   type: terminal

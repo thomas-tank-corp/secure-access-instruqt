@@ -7,7 +7,7 @@ description: |-
 
   **This track demonstrates how to:**
     - etc
-icon: https://cdn.instruqt.com/assets/templates/aws.png
+icon: https://www.hashicorp.com/_next/static/media/colorwhite.997fcaf9.svg
 tags:
 - boundary
 owner: hashicorp-field-ops
@@ -21,4 +21,4 @@ lab_config:
   sidebar_enabled: true
   feedback_recap_enabled: true
   loadingMessages: true
-checksum: "15581184474154147775"
+checksum: "4039212156296562999"
