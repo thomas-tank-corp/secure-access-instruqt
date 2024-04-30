@@ -6,7 +6,9 @@ title: Provision HCP Boundary and Vault clusters
 teaser: Standup an HCP Boundary and Vault deployment ready for the lab
 notes:
 - type: text
-  contents: First step! Deploy the HCP Boundary and HCP Vault clusters
+  contents: First step! Deploy the HCP Boundary and HCP Vault clusters. Whilst we're waiting to kick things off, look at the next slide to see what we will be building
+- type: image
+  url: ../assets/initial-build.png  
 tabs:
 - title: Workstation
   type: terminal
