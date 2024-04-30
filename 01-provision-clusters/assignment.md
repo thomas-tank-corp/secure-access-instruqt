@@ -3,10 +3,10 @@ slug: provision-clusters
 id: pqdyvxl7dbco
 type: challenge
 title: Provision HCP Boundary and Vault clusters
-teaser: prereq
+teaser: Standup an HCP Boundary and Vault deployment ready for the lab
 notes:
 - type: text
-  contents: Deploy HCP Boundary and HCP Vault clusters
+  contents: First step! Deploy the HCP Boundary and HCP Vault clusters
 tabs:
 - title: Workstation
   type: terminal

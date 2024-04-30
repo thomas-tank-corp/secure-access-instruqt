@@ -1,9 +1,9 @@
 ---
-slug: next-challenge
-id: twbhwmrfcgw6
+slug: over-to-you
+id: cykviaolabfx
 type: challenge
-title: something
-teaser: prereq
+title: It's over to you!
+teaser: Create additional targets and configure Boundary to securely connect to them
 notes:
 - type: text
   contents: TBC

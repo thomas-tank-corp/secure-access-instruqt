@@ -2,11 +2,12 @@
 slug: configure
 id: m7m6sg3yptbu
 type: challenge
-title: Boundary Config
-teaser: prereq
+title: Boundary and Vault Config
+teaser: Logically configure both Boundary and Vault, standup a self-managed worker
+  and deploy some targets!
 notes:
 - type: text
-  contents: TBC
+  contents: Lets get Boundary and Vault configured!
 tabs:
 - title: Workstation
   type: terminal
@@ -31,7 +32,8 @@ The deployment will take around 5 minutes. When you see Terraform return `Apply 
 
 This deployment will do the following things:
 
-1. 
+1. Configure a Boundary org scope and a project scope.
+2.
 
 
 
