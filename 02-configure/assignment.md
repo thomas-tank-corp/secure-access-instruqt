@@ -12,6 +12,10 @@ tabs:
 - title: Workstation
   type: terminal
   hostname: workstation
+- title: Editor
+  type: service
+  hostname: workstation
+  port: 8443
 - title: AWS Console
   type: service
   hostname: cloud-client
@@ -26,7 +30,7 @@ Configure Boundary and Vault
 
 Now that you have deployed Boundary and Vault, we will now configure using Terraform.
 
-Move in into the `hcpb-secure-access` directory and execute `terrraform init` then `terraform apply`
+Move in into the `hcpb-secure-access` directory and execute `terraform init` then `terraform apply`
 
 The deployment will take around 5 minutes. When you see Terraform return `Apply Complete!` in the terminal, hit the green next button in the bottom right hand corner.
 

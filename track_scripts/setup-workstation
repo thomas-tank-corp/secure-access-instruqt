@@ -15,6 +15,12 @@ apt-get install wget
 wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
 apt update && apt install terraform
+apt install boundary
+
+curl -fOL https://github.com/coder/code-server/releases/download/v$VERSION/code-server_${VERSION}_amd64.deb
+sudo dpkg -i code-server_${VERSION}_amd64.deb
+sudo systemctl enable --now code-server@$USER
+# Now visit http://127.0.0.1:8080. Your password is in ~/.config/code-server/config.yaml
 
 exit 0 
 
