@@ -28,7 +28,7 @@ timelimit: 7200
 Configure Boundary and Vault
 ===============
 
-Now that you have deployed Boundary and Vault, we will now configure using Terraform.
+Now that we have deployed Boundary and Vault, we will now configure both using Terraform.
 
 Move in into the `hcpb-secure-access` directory and execute `terraform init` then `terraform apply`
 
@@ -37,7 +37,14 @@ The deployment will take around 5 minutes. When you see Terraform return `Apply 
 This deployment will do the following things:
 
 1. Configure a Boundary org scope and a project scope.
-2.
+2. Create all the Host Catalogues, Host Sets and Hosts within Boundary.
+3. Creates all the credential libraries for Vault and the Bounday native credential store.
+4. Deploys a self-managed worker in AWS and authenticates with the HCPb control plane.
+5. Configures the Vault DB secret engine and SSH secret engine.
+6. Creates all requisite Vault policies.
+7. Deploys an EC2 Amazon Linux target for application credential injection, utilising Vault.
+8. Deploys an RDS instance for ephemeral, brokered credentials, utilising Vault.
+9. Deploys a Windows VM for static brokered credentials, utilising Boundary's static credential store
 
 
 

@@ -17,10 +17,43 @@ echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://
 apt update && apt install terraform
 apt install boundary
 
-curl -fOL https://github.com/coder/code-server/releases/download/v$VERSION/code-server_${VERSION}_amd64.deb
-sudo dpkg -i code-server_${VERSION}_amd64.deb
+#Install VSCode
+curl -fsSL https://code-server.dev/install.sh | sh
+
+
+mkdir -p /root/.local/share/code-server/User
+
+cat > /root/.local/share/code-server/User/settings.json <<-EOF
+{
+    "workbench.colorTheme": "Default Dark+",
+    "workbench.startupEditor": "none",
+    "security.workspace.trust.enabled": false,
+}
+EOF
+
+# Start Code Server
 sudo systemctl enable --now code-server@$USER
-# Now visit http://127.0.0.1:8080. Your password is in ~/.config/code-server/config.yaml
+
+#Configure Guacamole (https://docs.instruqt.com/sandboxes/hosts/run-a-windows-vm)
+cat <<'EOF' > /config/guacamole/user-mapping.xml
+<user-mapping>
+    <authorize
+        username="guac_user"
+        password="guac_password">
+        <connection name="srv01">
+            <protocol>rdp</protocol>
+            <!-- hostname as defined in instruqt config.yml -->
+            <param name="hostname">windows</param>
+            <param name="port">3389</param>
+            <!-- domain/username/password must be valid for the target host -->
+            <param name="domain"></param>
+            <param name="username">instruqt</param>
+            <param name="password">Passw0rd!</param>
+            <param name="ignore-cert">true</param>
+        </connection>
+    </authorize>
+</user-mapping>
+EOF
 
 exit 0 
 

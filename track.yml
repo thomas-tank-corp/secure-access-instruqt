@@ -3,10 +3,9 @@ id: ejkkwnvyggh2
 title: HCP Boundary - Secure Access
 teaser: Build a secure access solution with Boundary.
 description: |-
-  Learn how ....
+  Learn how securely access target resources using HashiCorp Boundary
 
-  **This track demonstrates how to:**
-    - etc
+  **This track deploys and configures HashiCorp Boundary and Vault with three different targets to allow the practitioner to get a feel for how Boundary works. Furthermore, it enables the practitioner to create their own targets to utilise Boundary to connect to them securely**
 icon: https://www.hashicorp.com/_next/static/media/colorwhite.997fcaf9.svg
 tags:
 - boundary
@@ -14,6 +13,7 @@ owner: hashicorp-field-ops
 developers:
 - tharris@hashicorp.com
 - danny.knights@hashicorp.com
+- guy@hashicorp.com
 lab_config:
   overlay: false
   width: 33
@@ -21,4 +21,4 @@ lab_config:
   sidebar_enabled: true
   feedback_recap_enabled: true
   loadingMessages: true
-checksum: "4039212156296562999"
+checksum: "2068214850586759462"

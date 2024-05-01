@@ -5,11 +5,19 @@ containers:
   shell: /bin/bash
   ports:
   - 80
+- name: guac
+  image: gcr.io/instruqt/guacamole
+  shell: /bin/bash
+  ports:
+  - 8080
 virtualmachines:
 - name: workstation
   image: ubuntu-os-cloud/ubuntu-2204-lts
   shell: bash
   machine_type: e2-highcpu-2
+- name: windows
+  image: instruqt/windows-server
+  machine_type: n1-standard-2
 aws_accounts:
 - name: AWS-account
   managed_policies:
