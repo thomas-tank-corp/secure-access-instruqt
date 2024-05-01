@@ -46,4 +46,9 @@ In the Workstation terminal, move into the `hcp-deploy` directory `cd hcp-deploy
 
 The deployment will take around 10 minutes. When you see Terraform return `Apply Complete!` in the terminal, hit the green next button in the bottom right hand corner.
 
+Whilst you're waiting - later on in the track we will connect to some targets. We will connect via differing methods, so whilst the clusters are provisioning, please could you download (if you don't have them already) and install the following:
+
+* Boundary Desktop Client - https://developer.hashicorp.com/boundary/tutorials/oss-getting-started/oss-getting-started-desktop-app
+* RDP client (if using a Mac) - https://apps.apple.com/us/app/microsoft-remote-desktop/id1295203466?mt=12
+
 
