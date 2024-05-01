@@ -17,22 +17,6 @@ echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://
 apt update && apt install terraform
 apt install boundary
 
-#Install VSCode
-curl -fsSL https://code-server.dev/install.sh | sh
-
-
-mkdir -p /root/.local/share/code-server/User
-
-cat > /root/.local/share/code-server/User/settings.json <<-EOF
-{
-    "workbench.colorTheme": "Default Dark+",
-    "workbench.startupEditor": "none",
-    "security.workspace.trust.enabled": false,
-}
-EOF
-
-# Start Code Server
-sudo systemctl enable --now code-server@$USER
 
 #Configure Guacamole (https://docs.instruqt.com/sandboxes/hosts/run-a-windows-vm)
 cat <<'EOF' > /config/guacamole/user-mapping.xml

@@ -31,7 +31,7 @@ timelimit: 7200
 Enabling Session Recording
 ===============
 
-The quickest way to enable session recording is to open up the `s3-bucket.tf` and `hcpb-storage-bucket.tf` in the VSCode editor and uncomment out all of the code in each file. This will create the AWS S3 bucket that is used to hold the Boundary Session Recording (BSR) data. It will also create the Boundary storage bucket that is associated with the S3 bucket in AWS.
+The quickest way to enable session recording is to open up the `s3-bucket.tf` and `hcpb-storage-bucket.tf` in the VS Code editor and uncomment out all of the code in each file. This will create the AWS S3 bucket that is used to hold the Boundary Session Recording (BSR) data. It will also create the Boundary storage bucket that is associated with the S3 bucket in AWS.
 
 Secondly, open up the `boundary-vm-target-config.tf` file and uncomment out the two lines as shown below:
 

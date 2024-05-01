@@ -10,6 +10,11 @@ containers:
   shell: /bin/bash
   ports:
   - 8080
+- name: code-server
+  image: codercom/code-server
+  cmd: root --auth none --disable-telemetry
+  ports:
+  - 8080
 virtualmachines:
 - name: workstation
   image: ubuntu-os-cloud/ubuntu-2204-lts
