@@ -16,6 +16,7 @@ wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/sha
 echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
 apt update && apt install terraform
 apt install boundary
+apt install postgresql-client
 
 #Install VSCode
 curl -fsSL https://code-server.dev/install.sh | sh

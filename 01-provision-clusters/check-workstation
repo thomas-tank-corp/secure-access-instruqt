@@ -1,13 +1,12 @@
 #!/bin/bash
 
-# Run the Terraform command and capture the output
+# store the output
 output=$(terraform -chdir=hcp-deploy output -raw boundary_addr)
 
-# Check if the output is non-empty
-if [[ -n "$output" ]]; then
-  echo "Output received: $output"
-  exit 0  # Exit with status code 0 (success)
-else
-  echo "No output received."
-  exit 1  # Exit with a non-zero status code (failure)
+# Check if the output starts with "https://"
+if [[ $output == https://* ]]; then
+    exit 0
+else 
+    fail-message "Resources not deployed yet. Please wait until the terraform apply is complete."
+    exit 1
 fi

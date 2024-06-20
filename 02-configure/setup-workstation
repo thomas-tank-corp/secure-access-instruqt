@@ -25,12 +25,27 @@ echo 'export VAULT_TOKEN=$(terraform -chdir=hcp-deploy output -raw vault_token)'
 echo 'export TF_VAR_boundary_addr=$(terraform -chdir=hcp-deploy output -raw boundary_addr)' >> /etc/profile.d/instruqt-env.sh 
 
 
-source /etc/profile.d/instruqt-env.sh
+#Define variables for Tfvars
+echo 'rdp_admin_username=Administrator' >> /root/hcpb-secure-access-instruqt/terraform.tfvars
+echo 's3_bucket_name=hcpb' >> /root/hcpb-secure-access-instruqt/terraform.tfvars
+echo 'db_name=workshop_postgres' >> /root/hcpb-secure-access-instruqt/terraform.tfvars
+echo 'db_password=workshop_UhFs5372Gjsbsbvgw' >> /root/hcpb-secure-access-instruqt/terraform.tfvars
+echo 'db_username=workshop_user' >> /root/hcpb-secure-access-instruqt/terraform.tfvars
+echo 'rdp_admin_pass=LongPassword123!' >> /root/hcpb-secure-access-instruqt/terraform.tfvars
+echo "aws_access=$AWS_ACCESS_KEY_ID" >> /root/hcpb-secure-access-instruqt/terraform.tfvars
+echo "aws_secret=$AWS_SECRET_ACCESS_KEY" >> /root/hcpb-secure-access-instruqt/terraform.tfvars
 
-# export TF_VAR_aws_access=$AWS_ACCESS_KEY_ID
-# export TF_VAR_aws_secret=$AWS_SECRET_ACCESS_KEY
-# terraform -chdir=hcpb-secure-access init
-# terraform -chdir=hcpb-secure-access apply -auto-approve
+
+#Variables for Tfvars, which are sourced from outputs of the config that has deployed the Boundary and Vault clusters
+echo 'vault_addr=$(terraform -chdir=hcp-deploy output -raw vault_addr)' >> /root/hcp-deploy-secure-access-instruqt/terraform.tfvars 
+echo 'vault_token=$(terraform -chdir=hcp-deploy output -raw vault_token)' >> /root/hcp-deploy-secure-access-instruqt/terraform.tfvars 
+echo 'boundary_addr=$(terraform -chdir=hcp-deploy output -raw boundary_addr)' >> /root/hcp-deploy-secure-access-instruqt/terraform.tfvars 
+
+#set instruqt variables for rendering in instructions
+agent variable set boundary_addr ''$(terraform -chdir=hcp-deploy output -raw boundary_addr)''
+agent variable set boundary_password ''$(terraform -chdir=hcp-deploy output -raw boundary_password)''
+
+source /etc/profile.d/instruqt-env.sh
 
 exit 0 
 
