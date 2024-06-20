@@ -10,16 +10,14 @@ containers:
   shell: /bin/bash
   ports:
   - 8080
-- name: code-server
-  image: codercom/code-server
-  cmd: root --auth none --disable-telemetry
-  ports:
-  - 8080
+virtualbrowsers:
+- name: hcp
+  url: https://portal.cloud.hashicorp.com
 virtualmachines:
 - name: workstation
   image: ubuntu-os-cloud/ubuntu-2204-lts
   shell: bash
-  machine_type: e2-highcpu-2
+  machine_type: n1-standard-2
 - name: windows
   image: instruqt/windows-server
   machine_type: n1-standard-2
@@ -27,4 +25,3 @@ aws_accounts:
 - name: AWS-account
   managed_policies:
   - arn:aws:iam::aws:policy/AdministratorAccess
-

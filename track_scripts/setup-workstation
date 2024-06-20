@@ -39,6 +39,88 @@ cat <<'EOF' > /config/guacamole/user-mapping.xml
 </user-mapping>
 EOF
 
+
+# install and Configure coder server
+
+curl -fsSL https://code-server.dev/install.sh | sh
+
+cat << EOF > /etc/systemd/system/code-server.service
+[Unit]
+Description=Code Server
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=root
+ExecStart=/usr/bin/code-server --host 0.0.0.0 --port 8443 --cert --auth none /root
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+mkdir -p /root/.local/share/code-server/User
+cat << EOF > /root/.local/share/code-server/User/settings.json
+{
+  "workbench.colorTheme": "Default Dark+",
+  "workbench.startupEditor": "none",
+  "security.workspace.trust.enabled": false,
+  "security.workspace.trust.banner": "never",
+  "security.workspace.trust.startupPrompt": "never",
+  "security.workspace.trust.untrustedFiles": "open",
+  "editor.minimap.enabled": false,
+  "terraform.experimentalFeatures.validateOnSave": true,
+  "terraform.experimentalFeatures.prefillRequiredFields": true,
+  "terraform.languageServer.enable": false,
+  "[terraform]": {
+    "editor.defaultFormatter": "hashicorp.terraform",
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "file"
+  },
+  "[terraform-vars]": {
+    "editor.defaultFormatter": "hashicorp.terraform",
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "file"
+  },
+  "files.exclude": {
+    "**/.bash*": true,
+    "**/.cache": true,
+    "**/.config": true,
+    "**/.docker": true,
+    "**/.gnupg": true,
+    "**/.git-credentials": true,
+    "**/.gitconfig": true,
+    "**/.local": true,
+    "**/.profile": true,
+    "**/.ssh": true,
+    "**/.terraform.d": true,
+    "**/.viminfo": true,
+    "**/.vimrc": true,
+    "**/.vscode": true,
+    "**/terraform-github": true,
+    "**/terraform-api": true,
+    "**/scripts": true,
+    "**/snap": true
+  },
+  "workbench.iconTheme": "material-icon-theme",
+  "material-icon-theme.activeIconPack": "react",
+  "material-icon-theme.files.associations": {},
+  "material-icon-theme.folders.theme": "classic",
+  "material-icon-theme.hidesExplorerArrows": true,
+  "git.confirmSync": false,
+  "git.autofetch": true
+}
+EOF
+
+systemctl enable code-server
+systemctl start code-server
+
+code-server --install-extension hashicorp.terraform
+
+
+
 exit 0 
 
 
