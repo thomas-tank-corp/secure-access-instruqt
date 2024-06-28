@@ -36,7 +36,9 @@ Hopefully up to this point you have had a chance to navigate around Boundary via
 
 In your code editor, you will see a file called `new-aws-ec2.tf`. What is contained within this file is a basic EC2 instance that gets deployed into your existing environment. We use some `cloudinit` configuration, which configures the instance to trust Vault as the CA and adds the Public Key from Vault onto the EC2 instance, so you can utilise application credential injection to securely access it.
 
-Uncomment the code and back in the termainal change directory to the `hcpb-secure-access-instruqt` and run a `terraform apply`, which will spin up this Amazon Linux EC2 instance. Now you just have to configure Boundary to enable secure access to the target....
+Uncomment the code and back in the termainal change directory to the `hcpb-secure-access-instruqt` and run a `terraform apply`, which will spin up this Amazon Linux EC2 instance. Now you just have to configure Boundary to enable secure access to the target.
+
+A new output will give the Public IP of the newly created EC2 instance, which you will need when building out the Boundary logical configuration.
 
 🏗️ Logical Architecture....recap.
 =========
@@ -75,9 +77,9 @@ Now you can click Save.
 
 If you have used the previous tip, when you click save you will be taken to the main Target configuration.
 
-If you didn't use the previous tip, click on Targets and then onto the Injected Application Credentials tab.
+If you didn't use the previous tip, click on Targets from the left-hand side in the Admin UI (ensuring you are within your Project scope) and then onto the Injected Application Credentials tab.
 
-When you select 'Add Injected Application Credentials', make sure you select the write credential source (you should be able to work out which one you need 🙂)
+When you select 'Add Injected Application Credentials', make sure you select the right credential source (you should be able to work out which one you need 🙂)
 
 
 🪜 Next steps

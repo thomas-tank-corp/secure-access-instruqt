@@ -65,7 +65,9 @@ Enabling this target for session recording could be done via the Admin UI or the
 💻 Connect to the Target
 ===============
 
-Like we did in the last step, we need to connect to the EC2 target again, if you didn't end the previous session. Once you have gained access, start issuing some commands! When you've finished, close the session and navigate to the Session Recordings section in the Admin UI, as shown in the screenshot below:
+Like we did in the last step, we need to connect to the EC2 target again. Let's do this via the Boudary Desktop Client.
+
+Once you have gained access, start issuing some commands! When you've finished, close the session and navigate to the Session Recordings section in the Admin UI, as shown in the screenshot below:
 
 ![Session Recording](../assets/boundary-recording.png)
 
