@@ -34,3 +34,31 @@ EOF
 
 # Start Code Server
 sudo systemctl enable --now code-server@$USER
+
+############# install PASS, create GPG keys and initiate PASS with GPG key
+
+# Install pass
+sudo apt-get update
+sudo apt-get install -y pass gnupg
+
+# Generate GPG key
+cat >gen-key-script <<EOF
+%no-protection
+Key-Type: default
+Subkey-Type: default
+Name-Real: Your Name
+Name-Comment: pass init
+Name-Email: email@example.com
+Expire-Date: 0
+EOF
+
+gpg --batch --generate-key gen-key-script
+rm gen-key-script
+
+# Get the GPG key ID
+GPG_KEY_ID=$(gpg --list-secret-keys --keyid-format LONG | grep 'sec' | awk '{print $2}' | sed -e 's/.*\///')
+
+# Initialize pass with the GPG key ID
+pass init $GPG_KEY_ID
+
+exit 0

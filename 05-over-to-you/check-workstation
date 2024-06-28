@@ -1,0 +1,8 @@
+#!/bin/bash -l
+
+set -e
+
+grep -q "export=CONFIRM_CLEANUP" /root/.bash_history || fail-message "You have not written CONFIRM_CLEANUP into the workstation terminal. Doing so and clicking check will destroy all resources and end the track "
+
+
+exit 0

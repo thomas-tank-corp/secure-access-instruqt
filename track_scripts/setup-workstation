@@ -12,6 +12,9 @@ apt-get update && sudo apt-get install -y gnupg software-properties-common
 
 apt-get install wget
 
+apt install postgresql-client-common
+apt install postgresql-client
+
 wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
 apt update && apt install terraform
@@ -19,25 +22,25 @@ apt install boundary
 
 
 #Configure Guacamole (https://docs.instruqt.com/sandboxes/hosts/run-a-windows-vm)
-cat <<'EOF' > /config/guacamole/user-mapping.xml
-<user-mapping>
-    <authorize
-        username="guac_user"
-        password="guac_password">
-        <connection name="srv01">
-            <protocol>rdp</protocol>
-            <!-- hostname as defined in instruqt config.yml -->
-            <param name="hostname">windows</param>
-            <param name="port">3389</param>
-            <!-- domain/username/password must be valid for the target host -->
-            <param name="domain"></param>
-            <param name="username">instruqt</param>
-            <param name="password">Passw0rd!</param>
-            <param name="ignore-cert">true</param>
-        </connection>
-    </authorize>
-</user-mapping>
-EOF
+# cat <<'EOF' > /config/guacamole/user-mapping.xml
+# <user-mapping>
+#     <authorize
+#         username="guac_user"
+#         password="guac_password">
+#         <connection name="srv01">
+#             <protocol>rdp</protocol>
+#             <!-- hostname as defined in instruqt config.yml -->
+#             <param name="hostname">windows</param>
+#             <param name="port">3389</param>
+#             <!-- domain/username/password must be valid for the target host -->
+#             <param name="domain"></param>
+#             <param name="username">instruqt</param>
+#             <param name="password">Passw0rd!</param>
+#             <param name="ignore-cert">true</param>
+#         </connection>
+#     </authorize>
+# </user-mapping>
+# EOF
 
 
 # install and Configure coder server
@@ -120,6 +123,31 @@ systemctl start code-server
 code-server --install-extension hashicorp.terraform
 
 
+############# install PASS, create GPG keys and initiate PASS with GPG key
+
+# Install pass
+sudo apt-get update
+sudo apt-get install -y pass gnupg
+
+# Generate GPG key
+cat >gen-key-script <<EOF
+%no-protection
+Key-Type: default
+Subkey-Type: default
+Name-Real: Your Name
+Name-Comment: pass init
+Name-Email: email@example.com
+Expire-Date: 0
+EOF
+
+gpg --batch --generate-key gen-key-script
+rm gen-key-script
+
+# Get the GPG key ID
+GPG_KEY_ID=$(gpg --list-secret-keys --keyid-format LONG | grep 'sec' | awk '{print $2}' | sed -e 's/.*\///')
+
+# Initialize pass with the GPG key ID
+pass init $GPG_KEY_ID
 
 exit 0 
 

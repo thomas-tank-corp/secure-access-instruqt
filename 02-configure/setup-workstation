@@ -1,53 +1,89 @@
 #!/bin/sh
 
-source /etc/profile.d/instruqt-env.sh
+until [ -f /opt/instruqt/bootstrap/host-bootstrap-completed ]; do
+    echo "Waiting for instruqt bootstrap to complete"
+    sleep 1
+done
+
 
 git clone https://github.com/dannyjknights/hcpb-secure-access-instruqt.git
 
-#Define variables for Terraform
-echo 'export TF_VAR_rdp_admin_username=Administrator' >> /etc/profile.d/instruqt-env.sh
-echo 'export TF_VAR_s3_bucket_name=hcpb' >> /etc/profile.d/instruqt-env.sh
-echo 'export TF_VAR_db_name=workshop_postgres' >> /etc/profile.d/instruqt-env.sh
-echo 'export TF_VAR_db_password=workshop_UhFs5372Gjsbsbvgw' >> /etc/profile.d/instruqt-env.sh
-echo 'export TF_VAR_db_username=workshop_user' >> /etc/profile.d/instruqt-env.sh
-echo 'export TF_VAR_rdp_admin_pass=LongPassword123!' >> /etc/profile.d/instruqt-env.sh
-echo "export TF_VAR_aws_access=$AWS_ACCESS_KEY_ID" >> /etc/profile.d/instruqt-env.sh
-echo "export TF_VAR_aws_secret=$AWS_SECRET_ACCESS_KEY" >> /etc/profile.d/instruqt-env.sh
-echo 'export AWS_ACCESS_KEY_ID="'$AWS_ACCESS_KEY_ID'"' >> /etc/profile.d/instruqt-env.sh
-echo 'export AWS_SECRET_ACCESS_KEY="'$AWS_SECRET_ACCESS_KEY'"' >> /etc/profile.d/instruqt-env.sh
+# #Define variables for Terraform
+# echo 'export TF_VAR_rdp_admin_username=Administrator' >> /etc/profile.d/instruqt-env.sh
+# echo 'export TF_VAR_s3_bucket_name=hcpb' >> /etc/profile.d/instruqt-env.sh
+# echo 'export TF_VAR_db_name=workshop_postgres' >> /etc/profile.d/instruqt-env.sh
+# echo 'export TF_VAR_db_password=workshop_UhFs5372Gjsbsbvgw' >> /etc/profile.d/instruqt-env.sh
+# echo 'export TF_VAR_db_username=workshop_user' >> /etc/profile.d/instruqt-env.sh
+# echo 'export TF_VAR_rdp_admin_pass=LongPassword123!' >> /etc/profile.d/instruqt-env.sh
+# echo "export TF_VAR_aws_access=$AWS_ACCESS_KEY_ID" >> /etc/profile.d/instruqt-env.sh
+# echo "export TF_VAR_aws_secret=$AWS_SECRET_ACCESS_KEY" >> /etc/profile.d/instruqt-env.sh
+# echo 'export AWS_ACCESS_KEY_ID="'$AWS_ACCESS_KEY_ID'"' >> /etc/profile.d/instruqt-env.sh
+# echo 'export AWS_SECRET_ACCESS_KEY="'$AWS_SECRET_ACCESS_KEY'"' >> /etc/profile.d/instruqt-env.sh
 
 
-#Variables for Terraform, which are sourced from outputs of the config that has deployed the Boundary and Vault clusters
-echo 'export VAULT_ADDR=$(terraform -chdir=hcp-deploy output -raw vault_addr)' >> /etc/profile.d/instruqt-env.sh 
-echo 'export TF_VAR_vault_addr=$(terraform -chdir=hcp-deploy output -raw vault_addr)' >> /etc/profile.d/instruqt-env.sh 
-echo 'export TF_VAR_vault_token=$(terraform -chdir=hcp-deploy output -raw vault_token)' >> /etc/profile.d/instruqt-env.sh 
-echo 'export VAULT_TOKEN=$(terraform -chdir=hcp-deploy output -raw vault_token)' >> /etc/profile.d/instruqt-env.sh 
-echo 'export TF_VAR_boundary_addr=$(terraform -chdir=hcp-deploy output -raw boundary_addr)' >> /etc/profile.d/instruqt-env.sh 
+# #Variables for Terraform, which are sourced from outputs of the config that has deployed the Boundary and Vault clusters
+# echo 'export VAULT_ADDR=$(terraform -chdir=hcp-deploy output -raw vault_addr)' >> /etc/profile.d/instruqt-env.sh 
+# echo 'export TF_VAR_vault_addr=$(terraform -chdir=hcp-deploy output -raw vault_addr)' >> /etc/profile.d/instruqt-env.sh 
+# echo 'export TF_VAR_vault_token=$(terraform -chdir=hcp-deploy output -raw vault_token)' >> /etc/profile.d/instruqt-env.sh 
+# echo 'export VAULT_TOKEN=$(terraform -chdir=hcp-deploy output -raw vault_token)' >> /etc/profile.d/instruqt-env.sh 
+# echo 'export TF_VAR_boundary_addr=$(terraform -chdir=hcp-deploy output -raw boundary_addr)' >> /etc/profile.d/instruqt-env.sh 
 
 
 #Define variables for Tfvars
-echo 'rdp_admin_username=Administrator' >> /root/hcpb-secure-access-instruqt/terraform.tfvars
-echo 's3_bucket_name=hcpb' >> /root/hcpb-secure-access-instruqt/terraform.tfvars
-echo 'db_name=workshop_postgres' >> /root/hcpb-secure-access-instruqt/terraform.tfvars
-echo 'db_password=workshop_UhFs5372Gjsbsbvgw' >> /root/hcpb-secure-access-instruqt/terraform.tfvars
-echo 'db_username=workshop_user' >> /root/hcpb-secure-access-instruqt/terraform.tfvars
-echo 'rdp_admin_pass=LongPassword123!' >> /root/hcpb-secure-access-instruqt/terraform.tfvars
-echo "aws_access=$AWS_ACCESS_KEY_ID" >> /root/hcpb-secure-access-instruqt/terraform.tfvars
-echo "aws_secret=$AWS_SECRET_ACCESS_KEY" >> /root/hcpb-secure-access-instruqt/terraform.tfvars
+echo 'rdp_admin_username="Administrator"' >> hcpb-secure-access-instruqt/terraform.tfvars
+echo 's3_bucket_name="hcpb"' >> hcpb-secure-access-instruqt/terraform.tfvars
+echo 'db_name="workshop_postgres"' >> hcpb-secure-access-instruqt/terraform.tfvars
+echo 'db_password="workshop_UhFs5372Gjsbsbvgw"' >> hcpb-secure-access-instruqt/terraform.tfvars
+echo 'db_username="workshop_user"' >> hcpb-secure-access-instruqt/terraform.tfvars
+echo 'rdp_admin_pass="LongPassword123!"' >> hcpb-secure-access-instruqt/terraform.tfvars
+echo 'aws_access="'$AWS_ACCESS_KEY_ID'"' >> hcpb-secure-access-instruqt/terraform.tfvars
+echo 'aws_secret="'$AWS_SECRET_ACCESS_KEY'"' >> hcpb-secure-access-instruqt/terraform.tfvars
+echo "vault_addr=\"$(terraform -chdir=hcp-deploy output -raw vault_addr)\"" >> hcpb-secure-access-instruqt/terraform.tfvars
+echo "vault_token=\"$(terraform -chdir=hcp-deploy output -raw vault_token)\"" >> hcpb-secure-access-instruqt/terraform.tfvars 
+echo "boundary_addr=\"$(terraform -chdir=hcp-deploy output -raw boundary_addr)\"" >> hcpb-secure-access-instruqt/terraform.tfvars 
+echo 'password_auth_method_login_name="admin"' >> hcpb-secure-access-instruqt/terraform.tfvars
+echo "password_auth_method_password=\"$(terraform -chdir=hcp-deploy output -raw boundary_password)\"" >> hcpb-secure-access-instruqt/terraform.tfvars
 
 
-#Variables for Tfvars, which are sourced from outputs of the config that has deployed the Boundary and Vault clusters
-echo 'vault_addr=$(terraform -chdir=hcp-deploy output -raw vault_addr)' >> /root/hcp-deploy-secure-access-instruqt/terraform.tfvars 
-echo 'vault_token=$(terraform -chdir=hcp-deploy output -raw vault_token)' >> /root/hcp-deploy-secure-access-instruqt/terraform.tfvars 
-echo 'boundary_addr=$(terraform -chdir=hcp-deploy output -raw boundary_addr)' >> /root/hcp-deploy-secure-access-instruqt/terraform.tfvars 
+########################PYTHON VERSION - START
 
-#set instruqt variables for rendering in instructions
-agent variable set boundary_addr ''$(terraform -chdir=hcp-deploy output -raw boundary_addr)''
-agent variable set boundary_password ''$(terraform -chdir=hcp-deploy output -raw boundary_password)''
+# import os
+# import subprocess
 
-source /etc/profile.d/instruqt-env.sh
+# # Define the variables
+# variables = {
+#     "rdp_admin_username": "Administrator",
+#     "s3_bucket_name": "hcpb",
+#     "db_name": "workshop_postgres",
+#     "db_password": "workshop_UhFs5372Gjsbsbvgw",
+#     "db_username": "workshop_user",
+#     "rdp_admin_pass": "LongPassword123!",
+#     "aws_access": os.getenv('AWS_ACCESS_KEY_ID'),
+#     "aws_secret": os.getenv('AWS_SECRET_ACCESS_KEY'),
+#     "vault_addr": subprocess.check_output(["terraform", "-chdir=hcp-deploy", "output", "-raw", "vault_addr"]).decode('utf-8').strip(),
+#     "vault_token": subprocess.check_output(["terraform", "-chdir=hcp-deploy", "output", "-raw", "vault_token"]).decode('utf-8').strip(),
+#     "boundary_addr": subprocess.check_output(["terraform", "-chdir=hcp-deploy", "output", "-raw", "boundary_addr"]).decode('utf-8').strip(),
+#     "password_auth_method_login_name": "admin",
+#     "password_auth_method_password": subprocess.check_output(["terraform", "-chdir=hcp-deploy", "output", "-raw", "boundary_password"]).decode('utf-8').strip()
+# }
+
+
+# # Open the file in append mode and write the variables
+# with open('hcpb-secure-access-instruqt/terraform.tfvars', 'a') as file:
+#     for key, value in variables.items():
+#         file.write(f'{key}="{value}"\n')
+
+########################PYTHON VERSION - END
+
 
 exit 0 
+
+
+
+
+
+
+
 
 
 

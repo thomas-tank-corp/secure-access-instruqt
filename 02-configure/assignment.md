@@ -28,12 +28,18 @@ difficulty: basic
 timelimit: 7200
 ---
 
-Configure Boundary and Vault
+🛠️ Configure Boundary and Vault
 ===============
 
 Now that we have deployed Boundary and Vault, we will now configure both using Terraform.
 
-Move in into the `hcpb-secure-access-instruqt` directory and execute `terraform init` then `terraform apply`
+Move into the `hcpb-secure-access-instruqt` directory by issuing a
+
+```
+cd hcpb-secure-access-instruqt
+```
+
+Then execute `terraform init` then `terraform apply`
 
 The deployment will take around 5 minutes. When you see Terraform return `Apply Complete!` in the terminal, hit the green next button in the bottom right hand corner.
 
@@ -49,19 +55,5 @@ This deployment will do the following things:
 8. Deploys an RDS instance for ephemeral, brokered credentials, utilising Vault.
 9. Deploys a Windows VM for static brokered credentials, utilising Boundary's static credential store
 
-Access to Boundary
-===
-To authenticate to  Boundary, issue the following command, utilising the username and password below.
-
-```
-boundary authenticate
-```
-
-```
-Boundary Address: [[ Instruqt-Var key="boundary_addr" hostname="workstation" ]]
-Boundary Username: admin
-Boundary Admin Password: [[ Instruqt-Var key="boundary_password" hostname="workstation" ]]
-```
-
-At this point, you can now log into the Admin UI and the Desktop client. In the Admin UI, take a look at what has been created during the logical configuration and to get a feel of the UI,
+Once the terraform apply is complete, click Next.
 

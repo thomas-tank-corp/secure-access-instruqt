@@ -5,11 +5,6 @@ containers:
   shell: /bin/bash
   ports:
   - 80
-- name: guac
-  image: gcr.io/instruqt/guacamole
-  shell: /bin/bash
-  ports:
-  - 8080
 virtualbrowsers:
 - name: hcp
   url: https://portal.cloud.hashicorp.com

@@ -1,21 +1,12 @@
 #!/bin/sh
 
+
 until [ -f /opt/instruqt/bootstrap/host-bootstrap-completed ]; do
     echo "Waiting for instruqt bootstrap to complete"
     sleep 1
 done
 
-git clone https://github.com/thomas-tank-corp/hcp-deploy.git
 
-source /etc/profile.d/instruqt-env.sh
+terraform -chdir=hcp-deploy destroy -auto-approve
 
 exit 0
-
-
-
-
-
-
-
-
-

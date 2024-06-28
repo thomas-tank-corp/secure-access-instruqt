@@ -1,5 +1,19 @@
 #!/bin/sh
 
+until [ -f /opt/instruqt/bootstrap/host-bootstrap-completed ]; do
+    echo "Waiting for instruqt bootstrap to complete"
+    sleep 1
+done
+
+#set variables for rendering in instructions
+agent variable set "boundary_addr=\"$(terraform -chdir=hcp-deploy output -raw boundary_addr)\""
+agent variable set "boundary_password=\"$(terraform -chdir=hcp-deploy output -raw boundary_password)\""
+
+agent variable set "rds_endpoint_address=\"$(terraform -chdir=hcpb-secure-access-instruqt output -raw rds_endpoint_address)\""
 
 
+agent variable set rds_endpoint_address "\"$(terraform -chdir=hcpb-secure-access-instruqt output -raw rds_endpoint_address)\""
+agent variable set boundary_addr "\"$(terraform -chdir=hcp-deploy output -raw boundary_addr)\""
+agent variable set boundary_password "\"$(terraform -chdir=hcp-deploy output -raw boundary_password)\""
 
+exit 0

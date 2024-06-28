@@ -22,5 +22,6 @@ lab_config:
   feedback_recap_enabled: true
   loadingMessages: true
   lab_v2: false
+  override_challenge_layout: false
   hideStopButton: false
-checksum: "13276427863550278917"
+checksum: "16434665418661216561"
